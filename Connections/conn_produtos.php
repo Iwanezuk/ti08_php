@@ -18,15 +18,4 @@ if($conn_produtos->connect_error){
 };
 // Não deixar espaços vazios depois do fechamento do PHP
 // Pode causaer erro "HEADER"
-
-
-
-
-
-
-
-
-
-
-
 ?>
