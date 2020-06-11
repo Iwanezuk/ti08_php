@@ -1,3 +1,19 @@
+<?php
+// Incluir o arquivo e fazer a conexão para USAR o banco
+include("../Connections/conn_produtos.php");
+
+// Definindo o USE do banco de dados
+mysqli_select_db($conn_produtos,$database_conn);
+// Selecionar os dados da chave estrangeira
+$tabela_fk      = "tbtipos";
+$ordenar_por_fk = "rotulo_tipo ASC";
+$consulta_fk    =   "SELECT *
+                    FROM ".$tabela_fk."
+                    ORDER BY ".$ordenar_por_fk."";
+$lista_fk       = $conn_produtos->query($consulta_fk);
+$row_fk         = $lista_fk->fetch_assoc();
+$totalRows_fk   = ($lista_fk)->num_rows;
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -11,7 +27,7 @@
 <body>
 <main class="container">
 <div class="row">
-<div class=""><!-- Dimensionamento -->
+<div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 "><!-- Dimensionamento -->
    <h2 class="breadcrumb text-danger">
       <a href="produtos_lista.php">
           <button class="btn btn-danger" type="button">
@@ -32,8 +48,19 @@
              </span>
              <!-- select>option*2 -->
              <select name="id_tipo_produto" id="id_tipo_produto" class="form-control" required>
-                 <option value="1">Churrasco</option>
-                 <option value="2">Sobremesa</option>
+                 <!-- Abre Estrutura de repetição -->
+                 <?php do { ?>
+                 <option value="<?php echo $row_fk['id_tipo']; ?>">
+                     <?php echo $row_fk['rotulo_tipo']; ?>
+                 </option>
+                 <?php } while ($row_fk = $lista_fk->fetch_assoc()); 
+                 $rows_fk = mysqli_num_rows($lista_fk);
+                 if(rows_fk > 0){
+                    mysqli_data_seek($lista_fk,0);
+                    $rows_fk = $lista_fk->fetch_assoc(); 
+                 };
+                 ?>
+                 <!-- Fecha Estrutura de repetição -->
              </select>
          </div>
          <br>
@@ -76,20 +103,17 @@
          </div>
          <br>
          <!-- file imagem_produto -->
-         <label for="imagem_produto">Imagem:</label>
+         <label for="imagem_produto">Imagem:</label>  
          <div class="input-group">
             <span class="input-group-addon">
                <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
             </span>
-            <input type="file" name="imagem_produto" id="imagem_produto" class="form-control">
+            <img src="" alt="" name="imagem" id="imagem" class="img-responsive">
+            <input type="file" name="imagem_produto" id="imagem_produto" class="form-control" onchange="visualizarImagem.call(this)">
          </div>
          <br>
-         
-         
-         
-         
-         
-         
+         <!-- btn enviar -->
+         <input type="submit" value="Cadastrar" name="enviar" id="enviar" class="btn btn-danger btn-block">
       </form>
       </div>       
    </div>
@@ -97,14 +121,23 @@
 </div>
 </div>
 </main>
-   
-   
-   
-   
-   
-    
+<!-- Script para visualizar a imagem -->   
+<script>
+    function visualizarImagem(){
+      if(this.files && this.files[0]){
+        var obj = new FileReader();
+        obj.onload = function(data){
+            var imagem = document.getElementById("imagem");
+            imagem.src = data.target.result;
+            imagem.style.display = "block";
+        };
+        obj.readAsDataURL(this.files[0]);
+      };
+    };
+</script>
 <!-- Link arquivos Bootstrap JS (plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php mysqli_free_result($lista_fk); ?>
