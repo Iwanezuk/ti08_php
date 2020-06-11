@@ -1,7 +1,7 @@
 <?php
 // Incluir o arquivo e fazer a conexão para USAR o banco
 include("../Connections/conn_produtos.php");
-// Selecinar os dados
+// Selecionar os dados
 $consulta   = "SELECT * FROM tbprodutos ORDER BY descri_produto ASC";
 // Fazer a lista completa dos dados
 $lista      = $conn_produtos->query($consulta);
