@@ -2,6 +2,42 @@
 // Incluir o arquivo e fazer a conexão para USAR o banco
 include("../Connections/conn_produtos.php");
 
+if($_POST){
+    // Definindo o USE do banco de dados
+    mysqli_select_db($conn_produtos,$database_conn);
+    
+    // Variáveis para acrescentar dados ao banco
+    $tabela_insert  = "tbprodutos";
+    $campos_insert  = "id_tipo_produto, destaque_produto, descri_produto, resumo_produto, valor_produto, imagem_produto";
+    
+    // Receber os dados do formulário
+    // Organize os campos na mesma ordem
+    $id_tipo_produto    = $_POST['id_tipo_produto']; 
+    $destaque_produto   = $_POST['destaque_produto'];
+    $descri_produto     = $_POST['descri_produto'];
+    $resumo_produto     = $_POST['resumo_produto'];
+    $valor_produto      = $_POST['valor_produto'];
+    $imagem_produto     = $_FILES['imagem_produto']['name'];
+    
+    // Reunir os valores a serem inseridos
+    $valores_insert =   "'$id_tipo_produto','$destaque_produto','$descri_produto','$resumo_produto','$valor_produto','$imagem_produto'";
+    
+    // Consulta SQL para inserção dos dados
+    $insertSQL  =   "INSERT INTO ".$tabela_insert."
+                        (".$campos_insert.")
+                    VALUES
+                        (".$valores_insert.")";
+    $resultado  = $conn_produtos->query($insertSQL);
+    
+    // Após a ação a página será redirecionada
+    $destino    = "produtos_lista.php";
+    if(mysqli_insert_id($conn_produtos)){
+        header("Location: $destino");
+    }else{
+        header("Location: $destino");
+    };
+};
+
 // Definindo o USE do banco de dados
 mysqli_select_db($conn_produtos,$database_conn);
 // Selecionar os dados da chave estrangeira
@@ -13,6 +49,14 @@ $consulta_fk    =   "SELECT *
 $lista_fk       = $conn_produtos->query($consulta_fk);
 $row_fk         = $lista_fk->fetch_assoc();
 $totalRows_fk   = ($lista_fk)->num_rows;
+
+// Para guardar o nome da imagem no banco e o arquivo no diretório
+if(isset($_POST['enviar'])){
+    $nome_img   = $_FILES['imagem_produto']['name'];
+    $tmp_img    = $_FILES['imagem_produto']['tmp_name'];
+    $dir_img    = "../imagens/".$nome_img;
+    move_uploaded_file($tmp_img,$dir_img);
+};
 ?>
 <!doctype html>
 <html lang="pt-br">
