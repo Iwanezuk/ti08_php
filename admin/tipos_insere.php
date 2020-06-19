@@ -1,3 +1,39 @@
+<?php
+// Incluir o arquivo e faze a conexão
+include("../Connections/conn_produtos.php");
+
+if($_POST){
+    // Definindo o USE do banco de dados
+    mysqli_select_db($conn_produtos,$database_conn);
+    
+    // Variáveis para acrescentar dados ao banco
+    $tabela_insert  = "tbtipos";
+    $campos_insert  = "sigla_tipo, rotulo_tipo";
+    
+    // Receber os dados do formulário
+    // Organizem os campos na mesma ordem
+    $sigla_tipo     = $_POST['sigla_tipo'];
+    $rotulo_tipo    = $_POST['rotulo_tipo'];
+    
+    // Reunir os valores a serem inserido
+    $valores_insert = "'$sigla_tipo','$rotulo_tipo'";
+    
+    // Consulta SQL para inserção dos dados
+    $insertSQL  =   "INSERT INTO ".$tabela_insert."
+                        (".$campos_insert.")
+                    VALUES
+                        (".$valores_insert.")";
+    $resultado  = $conn_produtos->query($insertSQL);
+    
+    // Após a ação a página será redirecionada
+    $destino    = "tipos_lista.php";
+    if(mysqli_insert_id($conn_produtos)){
+        header("Location: $destino");
+    }else{
+        header("Location: $destino");
+    }; 
+};
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
