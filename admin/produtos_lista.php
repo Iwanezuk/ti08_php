@@ -77,9 +77,10 @@ $totalRows  = ($lista)->num_rows;
          </div>
          <div class="modal-body">
              Deseja mesmo EXCLUIR o item?
+             <h3><span class="nome text-danger"></span></h3>
          </div>
          <div class="modal-footer">
-             <a href="#" type="button" class="btn btn-danger">
+             <a href="#" type="button" class="btn btn-danger delete-yes">
                  Confirmar
              </a>
              <button class="btn btn-success" data-dismiss="modal">
