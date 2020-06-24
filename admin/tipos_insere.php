@@ -1,5 +1,5 @@
 <?php
-// Incluir o arquivo e faze a conexão
+// Incluir o arquivo e faz a conexão
 include("../Connections/conn_produtos.php");
 
 if($_POST){
