@@ -79,6 +79,7 @@ if($_POST){
                  <input type="text" name="sigla_tipo" id="sigla_tipo" maxlength="3" placeholder="Digite a sigla do tipo." class="form-control" required>
              </div>
              <br>
+             
              <!-- btn enviar -->
              <input type="submit" value="Cadastrar" role="button" name="enviar" id="enviar" class="btn btn-block btn-warning">
           </form>
