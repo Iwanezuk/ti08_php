@@ -55,7 +55,12 @@ $totalRows  = ($lista)->num_rows;
               <td>
                   <img src="../imagens/<?php echo $row['imagem_produto']; ?>" alt="<?php echo $row['descri_produto']; ?>" width="100px">
               </td>
-              <td>ALTERAR|
+              <td>
+                 <a href="produtos_atualiza.php?id_produto=<?php echo $row['id_produto']; ?>" target="_self" class="btn btn-warning btn-block btn-xs" role="button">
+                     <span class="hidden-xs">ALTERAR<br></span>
+                     <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                 </a>
+                 
                   <button class="btn btn-danger btn-block btn-xs delete" role="button" data-nome="<?php echo $row['descri_produto']; ?>" data-id="<?php echo $row['id_produto']; ?>">
                     <span class="hidden-xs">EXCLUIR<br></span>
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
