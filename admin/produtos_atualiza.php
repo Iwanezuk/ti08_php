@@ -5,14 +5,21 @@ include("../Connections/conn_produtos.php");
 // Variáveis Globais
 $tabela         = "tbprodutos";
 $campo_filtro   = "id_produto";
-/*
-if($_POST){
+
+if($_POST){ // ATUALIZANDO NO BANCO DE DADOS
     // Definindo o USE do banco de dados
     mysqli_select_db($conn_produtos,$database_conn);
     
-    // Variáveis para acrescentar dados ao banco
-    $tabela_insert  = "tbprodutos";
-    $campos_insert  = "id_tipo_produto, destaque_produto, descri_produto, resumo_produto, valor_produto, imagem_produto";
+    // Para guardar o nome da imagem no banco e o arquivo no diretório
+    if($_FILES['imagem_produto']['name']){
+        $nome_img   = $_FILES['imagem_produto']['name'];
+        $tmp_img    = $_FILES['imagem_produto']['tmp_name'];
+        $dir_img    = "../imagens/".$nome_img;
+        move_uploaded_file($tmp_img,$dir_img);
+    }else{
+       $nome_img=$_POST['imagem_produto_atual'];
+    };
+    
     
     // Receber os dados do formulário
     // Organize os campos na mesma ordem
@@ -21,17 +28,21 @@ if($_POST){
     $descri_produto     = $_POST['descri_produto'];
     $resumo_produto     = $_POST['resumo_produto'];
     $valor_produto      = $_POST['valor_produto'];
-    $imagem_produto     = $_FILES['imagem_produto']['name'];
+    $imagem_produto     = $nome_img;
     
-    // Reunir os valores a serem inseridos
-    $valores_insert =   "'$id_tipo_produto','$destaque_produto','$descri_produto','$resumo_produto','$valor_produto','$imagem_produto'";
+    // Campo para filtrar o registro (WHERE)
+    $filtro_update      = $_POST['id_produto'];
     
-    // Consulta SQL para inserção dos dados
-    $insertSQL  =   "INSERT INTO ".$tabela_insert."
-                        (".$campos_insert.")
-                    VALUES
-                        (".$valores_insert.")";
-    $resultado  = $conn_produtos->query($insertSQL);
+    // Consulta SQL para ATUALIZAÇÃO dos dados
+    $updateSQL  =   "UPDATE ".$tabela."
+                        SET id_tipo_produto = '".$id_tipo_produto."',
+                            destaque_produto= '".$destaque_produto."',
+                            descri_produto  = '".$descri_produto."',
+                            resumo_produto  = '".$resumo_produto."',
+                            valor_produto   = '".$valor_produto."',
+                            imagem_produto  = '".$imagem_produto."'
+                        WHERE ".$campo_filtro."='".$filtro_update."'";
+    $resultado  = $conn_produtos->query($updateSQL);
     
     // Após a ação a página será redirecionada
     $destino    = "produtos_lista.php";
@@ -41,7 +52,7 @@ if($_POST){
         header("Location: $destino");
     };
 };
-*/
+
 // Consulta para trazer e filtrar os dados
 // Definindo o USE do banco de dados
 mysqli_select_db($conn_produtos,$database_conn);
@@ -65,13 +76,6 @@ $lista_fk       = $conn_produtos->query($consulta_fk);
 $row_fk         = $lista_fk->fetch_assoc();
 $totalRows_fk   = ($lista_fk)->num_rows;
 
-// Para guardar o nome da imagem no banco e o arquivo no diretório
-if(isset($_POST['enviar'])){
-    $nome_img   = $_FILES['imagem_produto']['name'];
-    $tmp_img    = $_FILES['imagem_produto']['tmp_name'];
-    $dir_img    = "../imagens/".$nome_img;
-    move_uploaded_file($tmp_img,$dir_img);
-};
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -99,6 +103,8 @@ if(isset($_POST['enviar'])){
    <div class="thumbnail">
       <div class="alert alert-danger" role="alert">
       <form action="produtos_atualiza.php" id="form_produto_atualiza" name="form_produto_atualiza" method="post" enctype="multipart/form-data">
+        <!-- Inserir o campo id_produto OCULTO para uso em filtros -->
+        <input type="hidden" name="id_produto" id="id_produto" value="<?php echo $row['id_produto']; ?>">
          <!-- Select id_tipo_produto -->
          <label for="id_tipo_produto">Tipo:</label>
          <div class="input-group">
@@ -166,7 +172,9 @@ if(isset($_POST['enviar'])){
          <!-- file imagem_produto ATUAL-->
          <label for="img_atual">Imagem Atual:</label>
          <img src="../imagens/<?php echo $row['imagem_produto']; ?>" alt="" class="img-responsive" style="max-width:30%;">
-         
+         <!-- type=hidden campo oculto para guardar dados -->
+         <!-- guardamos o nome da imagem caso não seja alterada -->
+         <input type="hidden" name="imagem_produto_atual" id="imagem_produto_atual" value="<?php echo $row['imagem_produto']; ?>">
          
          
          <!-- file imagem_produto NOVA-->
@@ -207,4 +215,15 @@ if(isset($_POST['enviar'])){
 <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
-<?php mysqli_free_result($lista_fk); ?>
+<?php 
+    mysqli_free_result($lista_fk); 
+    mysqli_free_result($lista);
+?>
+
+
+
+
+
+
+
+
