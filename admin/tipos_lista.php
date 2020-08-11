@@ -45,7 +45,11 @@ $totalRows  = ($lista)->num_rows;
                <td><?php echo $row['id_tipo']; ?></td>
                <td><?php echo $row['sigla_tipo']; ?></td>
                <td><?php echo $row['rotulo_tipo'] ?></td>
-               <td>ALTERAR|
+               <td>
+                  <a href="tipos_atualiza.php?id_tipo=<?php echo $row['id_tipo']; ?>" class="btn btn-warning btn-block btn-xs" role="button">
+                      <span class="hidden-xs">ALTERAR<br></span>
+                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                  </a>
                    <button data-nome="<?php echo $row['rotulo_tipo']; ?>" data-id="<?php echo $row['id_tipo']; ?>" class="delete btn btn-danger btn-block btn-xs">
                        <span class="hidden-xs">EXCLUIR<br></span>
                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
