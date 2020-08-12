@@ -29,9 +29,8 @@ $totalRows  = ($lista)->num_rows;
       <!-- thead>tr>th*8 -->
       <thead>
           <tr>
-              <th>ID</th>
+              <th class="hidden">ID</th>
               <th>TIPO</th>
-              <th>DESTAQUE</th>
               <th>DESCRIÇÃO</th>
               <th>RESUMO</th>
               <th>VALOR</th>
@@ -49,13 +48,22 @@ $totalRows  = ($lista)->num_rows;
          <!-- Abre a estrutura de repetição -->
          <?php do { ?>
           <tr>
-              <td><?php echo $row['id_produto']; ?></td>
+              <td class="hidden"><?php echo $row['id_produto']; ?></td>
               <td>
                 <span class="visible-xs"><?php echo $row['sigla_tipo']; ?></span>
                 <span class="hidden-xs"><?php echo $row['rotulo_tipo']; ?></span>
               </td>
-              <td><?php echo $row['destaque_produto']; ?></td>
-              <td><?php echo $row['descri_produto']; ?></td>
+              <td>
+                 
+                  <?php
+                    if($row['destaque_produto']=='Sim'){
+                        echo ("<span class='glyphicon glyphicon-heart text-danger' aria-hidden='true'></span>");
+                    }else if($row['destaque_produto']=='Não'){
+                        echo ("<span class='glyphicon glyphicon-ok text-info' aria-hidden='true'></span>");
+                    };
+                  ?>
+                  <?php echo $row['descri_produto']; ?>
+              </td>
               <td><?php echo $row['resumo_produto']; ?></td>
               <td><?php echo $row['valor_produto']; ?></td>
               <td>
