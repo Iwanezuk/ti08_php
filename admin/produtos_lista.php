@@ -2,7 +2,7 @@
 // Incluir o arquivo e fazer a conexão para USAR o banco
 include("../Connections/conn_produtos.php");
 // Selecionar os dados
-$consulta   = "SELECT * FROM tbprodutos ORDER BY descri_produto ASC";
+$consulta   = "SELECT * FROM vw_tbprodutos ORDER BY descri_produto ASC";
 // Fazer a lista completa dos dados
 $lista      = $conn_produtos->query($consulta);
 // Separar os dados em linhas(row)
@@ -19,11 +19,13 @@ $totalRows  = ($lista)->num_rows;
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/meu_estilo.css" type="text/css">
 </head>
-<body>
-<main>
-    <h1>Lista de Produtos</h1>
-    <table border="1">
+<body class="fundofixo">
+<?php include "menu_adm.php"; ?>
+<main class="container">
+    <h1 class="breadcrumb alert-danger">Lista de Produtos</h1>
+    <table class="table table-condensed table-hover tbopacidade">
       <!-- thead>tr>th*8 -->
       <thead>
           <tr>
@@ -35,8 +37,9 @@ $totalRows  = ($lista)->num_rows;
               <th>VALOR</th>
               <th>IMAGEM</th>
               <th>
-                  <a href="produtos_insere.php" target="_self">
-                      ADICIONAR
+                  <a href="produtos_insere.php" target="_self" class="btn btn-block btn-primary btn-xs">
+                      <span class="hidden-xs">ADICIONAR <br></span>
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                   </a>
               </th>
           </tr>
@@ -47,7 +50,10 @@ $totalRows  = ($lista)->num_rows;
          <?php do { ?>
           <tr>
               <td><?php echo $row['id_produto']; ?></td>
-              <td><?php echo $row['id_tipo_produto']; ?></td>
+              <td>
+                <span class="visible-xs"><?php echo $row['sigla_tipo']; ?></span>
+                <span class="hidden-xs"><?php echo $row['rotulo_tipo']; ?></span>
+              </td>
               <td><?php echo $row['destaque_produto']; ?></td>
               <td><?php echo $row['descri_produto']; ?></td>
               <td><?php echo $row['resumo_produto']; ?></td>
