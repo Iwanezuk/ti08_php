@@ -19,21 +19,26 @@ $totalRows  = ($lista)->num_rows;
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../css/meu_estilo.css" type="text/css">
 </head>
-<body>
-<main>
-    <h1>Lista de Tipos</h1>
-    <table border="1">
+<body class="fundofixo">
+<?php include "menu_adm.php" ?>
+<main class="container">
+    <h1 class="breadcrumb alert-warning">Lista de Tipos</h1>
+    <!-- Abertura da DIV de dimensionamento -->
+    <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8">
+    <table class="table table-hover table-condensed tbopacidade">
        <!-- thead>tr>th*4 -->
        <thead>
            <tr>
-               <th>ID</th>
+               <th class="hidden">ID</th>
                <th>SIGLA</th>
                <th>RÓTULO</th>
                <th>
-                   <a href="tipos_insere.php" target="_self">
-                       ADICIONAR
-                   </a>
+                   <a href="tipos_insere.php" target="_self" class="btn btn-block btn-primary btn-xs">
+                      <span class="hidden-xs">ADICIONAR <br></span>
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  </a>
                </th>
            </tr>
        </thead>
@@ -42,7 +47,7 @@ $totalRows  = ($lista)->num_rows;
           <!-- Abre a estrutura de repetição -->
           <?php do { ?>
            <tr>
-               <td><?php echo $row['id_tipo']; ?></td>
+               <td class="hidden"><?php echo $row['id_tipo']; ?></td>
                <td><?php echo $row['sigla_tipo']; ?></td>
                <td><?php echo $row['rotulo_tipo'] ?></td>
                <td>
@@ -60,6 +65,7 @@ $totalRows  = ($lista)->num_rows;
            <!-- Fecha a estrutura de repetição -->
        </tbody>
     </table>
+    </div><!-- Fechamento do dimensionamento -->
 </main>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">

@@ -36,7 +36,7 @@ $totalRows  = ($lista)->num_rows;
               <th>VALOR</th>
               <th>IMAGEM</th>
               <th>
-                  <a href="produtos_insere.php" target="_self" class="btn btn-block btn-primary btn-xs">
+                  <a href="produtos_insere.php" target="_self" class="btn btn-block btn-primary btn-xs mudacor">
                       <span class="hidden-xs">ADICIONAR <br></span>
                       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                   </a>
@@ -54,7 +54,6 @@ $totalRows  = ($lista)->num_rows;
                 <span class="hidden-xs"><?php echo $row['rotulo_tipo']; ?></span>
               </td>
               <td>
-                 
                   <?php
                     if($row['destaque_produto']=='Sim'){
                         echo ("<span class='glyphicon glyphicon-heart text-danger' aria-hidden='true'></span>");
@@ -65,7 +64,11 @@ $totalRows  = ($lista)->num_rows;
                   <?php echo $row['descri_produto']; ?>
               </td>
               <td><?php echo $row['resumo_produto']; ?></td>
-              <td><?php echo $row['valor_produto']; ?></td>
+              <td><?php echo number_format($row['valor_produto'],2,',','.'); ?></td>
+              <!-- 
+                  vírgual >> 0,00 >> separador de decimais;
+                  ponto >> 1.000  >> separador de milhares;
+              -->
               <td>
                   <img src="../imagens/<?php echo $row['imagem_produto']; ?>" alt="<?php echo $row['descri_produto']; ?>" width="100px">
               </td>
