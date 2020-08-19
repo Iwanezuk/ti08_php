@@ -27,17 +27,22 @@ $totalRows  =   ($lista)->num_rows;
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/meu_estilo.css" rel="stylesheet">
 </head>
-<body>
+<body class="fundofixo">
 <main class="container">
-<h2 class="breadcrumb alert-danger">Produtos</h2>
+<h2 class="breadcrumb alert-danger">
+   <a href="javascript:window.history.go(-1)" class="btn btn-danger">
+       <span class="glyphicon glyphicon-chevron-left"></span>
+   </a>
+   <strong><?php echo $row['descri_produto']; ?></strong>
+</h2>
 <div class="row"><!-- manter as elementos na linha -->
 <!-- Abre estrutura de repetição -->  
 <?php do { ?>
 <!-- Abre thumbnail/card -->
-<div class="col-sm-6 col-md-4"><!-- Dimensionamento -->
+<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"><!-- Dimensionamento -->
    <div class="thumbnail">
       <a href="produto_detalhe.php?id_produto=<?php echo $row['id_produto']; ?>">
-          <img src="imagens/<?php echo $row['imagem_produto']; ?>" alt="" class="img-responsive img-rounded" style="height: 20em;">
+          <img src="imagens/<?php echo $row['imagem_produto']; ?>" alt="" class="img-responsive img-rounded">
       </a>
       <div class="caption text-right">
           <h3 class="text-danger">
@@ -47,16 +52,13 @@ $totalRows  =   ($lista)->num_rows;
               <strong><?php echo $row['rotulo_tipo']; ?></strong>
           </p>
           <p class="text-left">
-              <?php echo mb_strimwidth($row['resumo_produto'],0,42,'...');  ?>
+              <?php echo $row['resumo_produto'];  ?>
           </p>
           <p>
               <button class="btn btn-default disabled" role="button">
                  <?php echo number_format($row['valor_produto'],2,',','.'); ?>                  
               </button>
-              <a href="produto_detalhe.php?id_produto=<?php echo $row['id_produto']; ?>" class="btn btn-danger" role="button">
-                  <span class="hidden-xs">Saiba mais...</span>
-                  <span class="visible-xs glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-              </a>
+              
           </p>
       </div> 
    </div>
