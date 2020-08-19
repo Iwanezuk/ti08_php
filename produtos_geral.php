@@ -70,3 +70,4 @@ $totalRows  =   ($lista)->num_rows;
 <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php mysqli_free_result($lista); ?>
