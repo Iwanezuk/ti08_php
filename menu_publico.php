@@ -1,4 +1,18 @@
 <!-- Salvar como: menu_publico.php -->
+<?php
+// Incluir arquivo para fazer a conexão
+include("Connections/conn_produtos.php");
+
+// Consulta para trazer os dados
+$tabela_tipos       = "tbtipos";
+$ordenar_por_tipos  = "rotulo_tipo";
+$consulta_tipos     =   "SELECT *
+                        FROM ".$tabela_tipos."
+                        ORDER BY ".$ordenar_por_tipos."";
+$lista_tipos        = $conn_produtos->query($consulta_tipos);
+$row_tipos          = $lista_tipos->fetch_assoc();
+$totalRow_tipos     = ($lista_tipos)->num_rows;
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -22,9 +36,65 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
       </button>
+      <a class="navbar-brand" href="index.php">
+          <img src="imagens/logochurrascopequeno.png" alt="">
+      </a>
+   </div>
+   <!-- Fecha Agrupamento MOBILE -->
+   <!-- Nav Direita -->
+   <div class="collapse navbar-collapse" id="menuPublico">
+      <ul class="nav navbar-nav navbar-right">
+         <li class="active">
+             <a href="index.php">
+                 <span class="glyphicon glyphicon-home"></span>
+             </a>
+         </li>
+         <li><a href="index.php#destaques">DESTAQUES</a></li>
+         <li><a href="index.php#produtos">PRODUTOS</a></li>
+         <!-- Início DropDown -->
+         <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                TIPOS
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+               <li>
+                   <a href="#">
+                       Churrasco
+                   </a>
+               </li>
+               <li>
+                   <a href="#">
+                       Sobremesa
+                   </a>
+               </li>                
+            </ul>
+         </li>
+         <!-- Fim DropDown -->
+         <li><a href="index.php#contato">CONTATO</a></li>
+         <!-- Abre Form de busca -->
+         <form action="produtos_busca.php" method="get" name="form_busca" id="form_busca" class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+               <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Busca Produto" name="buscar" id="buscar" size="9" required>
+                  <span class="input-group-btn">
+                      <button type="submit" class="btn btn-default">
+                          <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                  </span>
+               </div>
+            </div>
+         </form>
+         <!-- Fecha Form de busca -->
+         <li class="active">
+            <a href="admin/index.php">
+                <span class="glyphicon glyphicon-user"></span>&nbsp;ADMIN
+            </a>
+         </li>
+      </ul>
        
    </div>
-    
+   <!-- Fecha Nav Direita -->
 </div>
 </nav>
 
