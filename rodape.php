@@ -5,10 +5,12 @@
 <title>Chuleta Quente</title>
 <meta charset="utf-8">
 <!-- Link arquivos Bootstrap css -->
+<!-- CÓDIGO DESABILITADO PARA NÃO HAVER CONFLITOS
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/meu_estilo.css" rel="stylesheet">
+-->
 </head>
 <body class="fundofixo">
 <!-- Abre o painel de Rodapé -->
@@ -38,7 +40,7 @@
 
 <!-- Abre ÁREA DE NAVEGAÇÃO -->
 <div class="col-sm-6 col-md-4">
-   <div class="panel-footer" style="background:none">
+   <div class="panel-footer" style="background:none;">
      <h4>Links</h4>
      <!-- ul>li>a>span -->
      <ul class="nav nav-pills nav-stacked">
@@ -78,18 +80,67 @@
 
 <!-- Abre ÁREA FORM CONTATO -->
 <div class="col-sm-6 col-md-4">
-   <div class="panel-footer" style="background:none">
+   <div class="panel-footer" style="background:none;">
      <h4>Contato</h4>
-      
+     <form action="rodape_contato_envia.php" name="form_contato" id="form_contato" method="post">
+         <!-- INPUT group nome -->
+         <p>
+             <span class="input-group">
+                 <span class="input-group-addon" id="basic-addon1">
+                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                 </span>
+                 <input type="text" name="nome_contato" id="nome_contato" placeholder="Digite seu nome" aria-describedby="basic-addon1" required class="form-control">
+             </span>
+         </p>
+        <!-- utilizando o mesmo padrão do input nome contato -->
+        <!-- CONSTRUA O INPUT GROUP EMAIL Use glyphicon-envelope -->
+        <p>
+             <span class="input-group">
+                 <span class="input-group-addon" id="basic-addon2">
+                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                 </span>
+                 <input type="email" name="email_contato" id="email_contato" placeholder="Digite seu email" aria-describedby="basic-addon2" required class="form-control">
+             </span>
+         </p>
+        <!-- CONSTRUA O TEXTAREA COMENTÁRIOS Use glyphicon-pencil -->
+        <p>
+             <span class="input-group">
+                 <span class="input-group-addon" id="basic-addon3">
+                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                 </span>
+                 <textarea name="comentarios_contato" id="comentarios_contato" cols="30" rows="5" placeholder="Comentários, dúvidas e/ou sugestões." describedby="basic-addon3" required class="form-control"></textarea>
+             </span>
+         </p>
+        <!-- CONSTRUA O BOTÃO ENVIAR Use glyphicon-send -->
+        <p>
+            <button class="btn btn-danger btn-block" aria-label="Enviar" role="button">
+               Enviar
+               <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+            </button>
+        </p>
+     </form>
    </div>
 </div>
-<!-- Fecha ÁREA FORM CONTATO -->                        
-    
+<!-- Fecha ÁREA FORM CONTATO -->
+<!-- Abre ÁREA DO DESENVOLVEDOR -->
+<div class="col-sm-12">
+   <div class="panel-footer" style="background:none;">
+      <h6 class="text-danger text-center">
+          Developed by Iwanezuk&trade; 2020.
+          <br>
+          <a href="http://www.iwanezuk.com.br">
+              www.iwanezuk.com.br
+          </a>
+      </h6>
+   </div>
+</div> 
+<!-- Fecha ÁREA DO DESENVOLVEDOR -->
 </div>
 <!-- Fecha o painel de Rodapé -->
-
-<!-- Link arquivos Bootstrap js -->        
+<!-- Link arquivos Bootstrap js --> 
+<!-- CÓDIGO DESABILITADO PARA NÃO HAVER CONFLITOS        
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+-->
 </body>
 </html>
