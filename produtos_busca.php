@@ -29,7 +29,10 @@ $totalRows  =   ($lista)->num_rows;
 </head>
 <body class="fundofixo">
 <?php include('menu_publico.php'); ?>
-<?php //include('carrossel.php'); ?>
+<div class="hidden-xs">
+    <?php include('carroussel.php'); ?>
+</div>
+
 <main class="container">
 <!-- Mostrar se o registro retornarem VAZIOS -->
 <?php if($totalRows == 0){ ?>
@@ -88,7 +91,9 @@ $totalRows  =   ($lista)->num_rows;
 <!-- Fecha estrutura de repetição -->  
 </div><!-- fecha row -->
 <?php }; ?><!-- Fecha Registros NÃO vazios -->
-
+<footer>
+    <?php include('rodape.php'); ?>
+</footer>
 </main>
 <!-- Link arquivos Bootstrap js -->        
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
