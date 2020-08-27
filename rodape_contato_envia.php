@@ -1,8 +1,9 @@
 <!-- Salvar como: rodape_contato_envia.php -->
-<!doctype html> <!-- Lembrar disso amanhã -->
+<!doctype html>
 <html lang="pt-br">
 <head>
 <!-- Após 15 segundos a página será redirecionada para index.php -->
+<meta http-equiv="refresh" content="10;URL=index.php">
 <title>Verificação do Contato</title>
 <meta charset="utf-8">
 <!-- Link arquivos Bootstrap css -->
@@ -13,7 +14,7 @@
 </head>
 <body class="fundofixo">
 <?php include('menu_publico.php'); ?>
-<?php //include('carrossel.php'); ?>
+<?php include('carroussel.php'); ?>
 <main class="container">
 <section>
    <div class="jumbotron alert-danger">
