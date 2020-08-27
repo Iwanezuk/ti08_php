@@ -28,6 +28,8 @@ $totalRows  =   ($lista)->num_rows;
 <link href="css/meu_estilo.css" rel="stylesheet">
 </head>
 <body class="fundofixo">
+<?php include('menu_publico.php'); ?>
+<?php include('carroussel.php'); ?>
 <main class="container">
 <h2 class="breadcrumb alert-danger">
    <a href="javascript:window.history.go(-1)" class="btn btn-danger">
@@ -67,7 +69,9 @@ $totalRows  =   ($lista)->num_rows;
 <?php } while ($row=$lista->fetch_assoc()); ?>
 <!-- Fecha estrutura de repetição -->  
 </div><!-- fecha row -->
-
+<footer>
+    <?php include('rodape.php'); ?>
+</footer>
 </main>
 <!-- Link arquivos Bootstrap js -->        
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
