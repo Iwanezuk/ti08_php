@@ -37,7 +37,7 @@ if($_POST){
 <!doctype html>
 <html lang="pt-br">
 <head>
-<meta http-equiv="refresh" content="15000;URL=../index.php">
+<meta http-equiv="refresh" content="15;URL=../index.php">
 <title>Login</title>
 <meta charset="utf-8">
 <!-- Link arquivos Bootstrap css -->
