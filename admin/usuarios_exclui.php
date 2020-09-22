@@ -1,4 +1,8 @@
 <?php
+// Incluindo o Sistema de autenticação SUPERVISOR
+include("acesso_sup.php");
+?>
+<?php
 // Incluir o arquivo e fazer a conexão
 include("../Connections/conn_produtos.php");
 

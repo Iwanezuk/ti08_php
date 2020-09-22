@@ -1,4 +1,8 @@
 <?php
+// Incluindo o Sistema de autenticação
+include("acesso_com.php");
+?>
+<?php
 // Incluir o arquivo e faz a conexão
 include("../Connections/conn_produtos.php");
 
