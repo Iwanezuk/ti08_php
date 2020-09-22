@@ -32,12 +32,12 @@
                       Usuário e/ou senha inválido
                   </h4>
                   <p class="text-danger">
-                     <a href="login.php" class="btn btn-danger">
+                     <a href="login.php" class="btn btn-danger" target="_self">
                          <i class="fas fa-external-link-alt fa-rotate-270 fa-3x"></i>
                          <br><br>
                          Tentar <br> novamente
                      </a>
-                     <a href="../index.php" class="btn btn-success">
+                     <a href="../index.php" class="btn btn-success" target="_self">
                          <i class="fas fa-home fa-3x"></i>
                          <br><br>
                          Voltar <br> Área Pública
