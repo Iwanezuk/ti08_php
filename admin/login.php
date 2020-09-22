@@ -1,4 +1,39 @@
-<!-- Salvar como: admin/invasor.php -->
+<!-- Salvar como: admin/login.php -->
+<?php
+// Incluir o arquivo para fazer a conexão
+include("../Connections/conn_produtos.php");
+
+//Inicia verificação do login
+if($_POST){
+    //Definindo o USE do banco de dados
+    mysqli_select_db($conn_produtos,$database_conn);
+    
+    // Verificando o login e senha recebidos
+    $login_usuario  =   $_POST['login_usuario'];
+    $senha_usuario  =   $_POST['senha_usuario'];
+    
+    $verificaSQL    =   "SELECT *
+                        FROM tbusuarios
+                        WHERE login_usuario='$login_usuario'
+                        AND senha_usuario='$senha_usuario'";
+    // Carregar os dados e verificar as linhas
+    $lista_session  =   mysqli_query($conn_produtos,$verificaSQL);
+    $row_session    =   $lista_session->fetch_assoc();
+    $totalRows_session = mysqli_num_rows($lista_session);
+    
+    // Se a sessão não existir, inicia uma
+    if(!isset($_SESSION)) session_start();
+    
+    // Carregar informações em uma sessão
+    if($totalRows_session>0){
+        $_SESSION['login_usuario']=$login_usuario;
+        $_SESSION['nivel_usuario']=$row_session['nivel_usuario'];
+        echo "<script>window.open('index.php','_self')</script>";
+    }else{
+        echo "<script>window.open('invasor.php','_self')</script>";
+    };
+};
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
