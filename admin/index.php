@@ -1,9 +1,8 @@
-<!-- Salvar como: admin/index.php -->
 <?php
 // Incluindo o Sistema de autenticação
 include("acesso_com.php");
 ?>
-
+<!-- Salvar como: admin/index.php -->
 <!doctype html>
 <html lang="pt-br">
 <head>
