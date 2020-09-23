@@ -1,4 +1,3 @@
-<!-- Salvar como: admin/login.php -->
 <?php
 // Incluir o arquivo para fazer a conexão
 include("../Connections/conn_produtos.php");
@@ -11,15 +10,15 @@ if($_POST){
     // Verificando o login e senha recebidos
     $login_usuario  =   $_POST['login_usuario'];
     $senha_usuario  =   $_POST['senha_usuario'];
-    
+
     $verificaSQL    =   "SELECT *
-                        FROM tbusuarios
-                        WHERE login_usuario='$login_usuario'
-                        AND senha_usuario='$senha_usuario'";
+                        FROM  tbusuarios
+                        WHERE login_usuario ='$login_usuario' 
+                        AND senha_usuario ='$senha_usuario'";
     // Carregar os dados e verificar as linhas
-    $lista_session  =   mysqli_query($conn_produtos,$verificaSQL);
-    $row_session    =   $lista_session->fetch_assoc();
-    $totalRows_session = mysqli_num_rows($lista_session);
+    $lista_session      =   mysqli_query($conn_produtos, $verificaSQL);
+    $row_session        =   $lista_session->fetch_assoc();
+    $totalRows_session  =   mysqli_num_rows($lista_session);
     
     // Se a sessão não existir, inicia uma
     if(!isset($_SESSION)) session_start();
@@ -34,6 +33,7 @@ if($_POST){
     };
 };
 ?>
+<!-- Salvar como: admin/login.php -->
 <!doctype html>
 <html lang="pt-br">
 <head>
