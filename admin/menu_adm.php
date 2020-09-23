@@ -32,6 +32,21 @@
    <!-- nav direita -->
    <div class="collapse navbar-collapse" id="defaultNavbar">
       <ul class="nav navbar-nav navbar-right">
+        <li>
+            <button type="button" class="btn btn-danger navbar-btn disabled">
+                Olá, <?php echo($_SESSION['login_usuario']); ?>
+                &nbsp;
+                <?php 
+                      if($_SESSION['nivel_usuario']=='com'){
+                          echo ("<span class='glyphicon glyphicon-user' aria-hidden='true'></span>");
+                      }else if($_SESSION['nivel_usuario']=='sup'){
+                          echo ("<span class='glyphicon glyphicon-sunglasses text-default' aria-hidden='true'></span>");
+                      };
+                    ?> 
+            </button>&nbsp;&nbsp;&nbsp;
+        </li>
+         
+         
           <li class="active"><a href="index.php">ADMIN</a></li>
           <li><a href="produtos_lista.php">PRODUTOS</a></li>
           <li><a href="tipos_lista.php">TIPOS</a></li>
