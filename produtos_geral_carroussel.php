@@ -29,6 +29,7 @@ $totalRows  =   ($lista)->num_rows;
 
 
 <!-- https://github.com/kenwheeler/slick -->
+<!-- http://kenwheeler.github.io/slick/ -->
 <link rel="stylesheet" type="text/css" href="./slick/slick.css">
   <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
   <!-- Add the slick-theme.css if you want default styling -->
