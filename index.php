@@ -26,7 +26,8 @@
    <a name="produtos">&nbsp;</a>
    <hr>
    <?php include('produtos_geral.php'); ?>
-   
+   <hr>
+   <?php include('produtos_geral_carroussel.php'); ?>
    <!-- RODAPÉ -->
    <footer>
        <?php include('rodape.php'); ?>
@@ -37,4 +38,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </html>
