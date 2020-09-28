@@ -21,12 +21,21 @@ if($_POST){
     $totalRows_session  =   mysqli_num_rows($lista_session);
     
     // Se a sessão não existir, inicia uma
-    if(!isset($_SESSION)) session_start();
+    if(!isset($_SESSION)){
+        $sessao_antiga = session_name("chuletaaa");
+        session_start(); 
+        $session_name_new = session_name(); // recupero o nome da atual
+    };
+    
+    
+    // a variável ficará com o nome da antiga sessao PHPSESSID 
+    //$nome_da_sessao = session_name("teste"); // alterei o PHPSESSID para teste     
     
     // Carregar informações em uma sessão
     if($totalRows_session>0){
         $_SESSION['login_usuario']=$login_usuario;
         $_SESSION['nivel_usuario']=$row_session['nivel_usuario'];
+        $_SESSION['nome_da_sessao']=session_name();
         echo "<script>window.open('index.php','_self')</script>";
     }else{
         echo "<script>window.open('invasor.php','_self')</script>";
