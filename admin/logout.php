@@ -1,6 +1,7 @@
 <?php
 // Salvar como: admin/logout.php
 // Inicia a sessão
+session_name("chuletaaa");
 session_start();
 // Destrói a sessão limpando todos os dados
 session_destroy();
