@@ -159,7 +159,7 @@ if(isset($_POST['enviar'])){
                <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
             </span>
             <img src="" alt="" name="imagem" id="imagem" class="img-responsive">
-            <input type="file" name="imagem_produto" id="imagem_produto" class="form-control" onchange="visualizarImagem.call(this)">
+            <input type="file" accept="image/*" name="imagem_produto" id="imagem_produto" class="form-control" >
          </div>
          <br>
          <!-- btn enviar -->
@@ -171,19 +171,35 @@ if(isset($_POST['enviar'])){
 </div>
 </div>
 </main>
-<!-- Script para visualizar a imagem -->   
+<!-- Script para a imagem -->   
 <script>
-    function visualizarImagem(){
-      if(this.files && this.files[0]){
-        var obj = new FileReader();
-        obj.onload = function(data){
-            var imagem = document.getElementById("imagem");
-            imagem.src = data.target.result;
-            imagem.style.display = "block";
-        };
-        obj.readAsDataURL(this.files[0]);
-      };
+document.getElementById("imagem_produto").onchange = function () {
+    var reader = new FileReader();
+    if(this.files[0].size>528385){
+        alert("A imagem deve ter no máximo 500Kb");
+        $("#imagem").attr("src","blank");
+        $("#imagem").hide();  
+        $('#imagem_produto').wrap('<form>').closest('form').get(0).reset();
+        $('#imagem_produto').unwrap();     
+        return false;
+    }
+    if(this.files[0].type.indexOf("image")==-1){
+        alert("Formato inválido, escolha uma imagem!");
+        $("#imagem").attr("src","blank");
+        $("#imagem").hide();  
+        $('#imagem_produto').wrap('<form>').closest('form').get(0).reset();
+        $('#imagem_produto').unwrap();         
+        return false;
+    }   
+    reader.onload = function (e) {
+        // obter dados carregados e renderizar miniatura.
+        document.getElementById("imagem").src = e.target.result;
+        $("#imagem").show(); 
     };
+    
+    // leia o arquivo de imagem como um URL de dados.
+    reader.readAsDataURL(this.files[0]);
+};
 </script>
 <!-- Link arquivos Bootstrap JS (plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
